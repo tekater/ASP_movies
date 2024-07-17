@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h3 class="display-4"> <a asp-area="" asp-page="/Session">Session</a></h3>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Название</th>
+                <th>Режисер</th>
+                <th>Жанр</th>
+                <th>Время</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.Movie)
+            {
+                <tr>
+                    <td>@movie.Name</td>
+                    <td>@movie.Director</td>
+                    <td>@movie.Style</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            @foreach (var showtime in Model.Movie)
+                            {
+                                <li>@showtime(@"Date\:Time")</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
